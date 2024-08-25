@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import Clt_theme from "@/components/common/clt_theme.vue";
+import {theme} from "@/components/common/clt_theme";
 </script>
 
 <template>
@@ -11,7 +12,9 @@ import Clt_theme from "@/components/common/clt_theme.vue";
   </div>
   <div class="clt_main">
       <div class="clt_head">
-          <div class="clt_breadcrumbs"></div>
+          <div class="clt_breadcrumbs">
+              <a-button type="primary">{{ theme }}</a-button>
+          </div>
           <div class="clt_actions">
               <icon-home />
               <clt_theme></clt_theme>
