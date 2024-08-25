@@ -2,6 +2,7 @@
 
 import Clt_theme from "@/components/common/clt_theme.vue";
 import {theme} from "@/components/common/clt_theme";
+import Clt_screen from "@/components/common/clt_screen.vue";
 </script>
 
 <template>
@@ -18,15 +19,14 @@ import {theme} from "@/components/common/clt_theme";
           <div class="clt_actions">
               <icon-home />
               <clt_theme></clt_theme>
-              <icon-fullscreen />
-              <icon-fullscreen-exit />
+              <clt_screen></clt_screen>
               <div class="clt_info_action"></div>
           </div>
       </div>
       <div class="clt_tabs"></div>
       <div class="clt_container">
           <router-view >
-              <button>按钮</button>
+
           </router-view>
       </div>
   </div>
