@@ -2,7 +2,10 @@
   <div class="clt_menu" :class="{collapsed:collapsed}">
       <div class="clt_menu_inner" scrollbar>
           <a-menu
+              @menu-item-click="menuItemClick"
               v-model:collapsed="collapsed"
+              v-model:open-keys="openKeys"
+              :default-selected-keys="[route.name]"
               show-collapse-button>
               <template v-for="menu in menuList">
                   <a-menu-item :key="menu.name" v-if="!menu.children">
@@ -37,7 +40,11 @@ import type {Component} from "vue";
 import {IconHome,IconUser,IconSettings} from "@arco-design/web-vue/es/icon";
 import Clt_component from "@/components/common/clt_component.vue";
 import {collapsed} from "@/components/admin/clt_menu";
+import router from "@/router";
+import {useRoute} from "vue-router";
+import {ref} from "vue";
 
+const route = useRoute()
 
 interface MenuType{
     title:string
@@ -52,16 +59,29 @@ const menuList : MenuType[] = [
     {title:"个人中心",name:"userCenter",icon:IconUser,children:[
             {title:"用户信息",name:"userInfo",}
         ]},
-    {title:"用户管理",name:"userMange",icon:IconUser,children:[
+    {title:"用户管理",name:"userManage",icon:IconUser,children:[
             {title:"用户列表",name:"userList",}
         ]},
-    {title:"组件管理",name:"componentMange",icon:IconUser,children:[
-            {title:"组件列表",name:"componentList",}
-        ]},
-    {title:"系统设置",name:"settingsMange",icon:IconSettings,children:[
-            {title:"系统信息",name:"settingsInfo",}
+    {title:"系统设置",name:"settingsManage",icon:IconSettings,children:[
+            {title:"系统信息",name:"settings",}
         ]},
 ]
+
+function menuItemClick(key:string){
+   router.push({
+       name: key
+   })
+}
+
+const openKeys =ref<string[]>([])
+
+function initRoute(){
+    if (route.matched.length===3){
+        openKeys.value=[route.matched[1].name as string]
+    }
+}
+
+initRoute()
 </script>
 
 <style lang="less">
