@@ -46,6 +46,7 @@ import {collapsed} from "@/components/admin/clt_menu";
         width: 240px;
         height: 100vb;
         border-right: @clt_border;
+        transition: width .3s;
 
         .clt_logo {
             width: 100%;
@@ -54,35 +55,40 @@ import {collapsed} from "@/components/admin/clt_menu";
 
         &.collapsed{
           width: 48px;
+
+          &~.clt_main{
+            width: calc(100% - 48px);
+          }
         }
     }
 
-.clt_main {
-    width: calc(100% - 240px);
+    .clt_main {
+        width: calc(100% - 240px);
+        transition: width .3s;
 
-    .clt_head {
-        width: 100%;
-        height: 60px;
-        border-bottom:  @clt_border;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .clt_head {
+            width: 100%;
+            height: 60px;
+            border-bottom:  @clt_border;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .clt_tabs {
-        width: 100%;
-        height: 30px;
-        border-bottom:  @clt_border;
-    }
+        .clt_tabs {
+            width: 100%;
+            height: 30px;
+            border-bottom:  @clt_border;
+        }
 
-    .clt_container {
-        width: 100%;
-        height: calc(100vh - 90px);
-        overflow-y: auto;
-        overflow-x: hidden;
-        background-color: @color-fill-2 ;
+        .clt_container {
+            width: 100%;
+            height: calc(100vh - 90px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: @color-fill-2 ;
+        }
     }
-}
 }
 
 </style>

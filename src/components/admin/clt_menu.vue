@@ -1,5 +1,5 @@
 <template>
-  <div class="clt_menu">
+  <div class="clt_menu" :class="{collapsed:collapsed}">
       <div class="clt_menu_inner" scrollbar>
           <a-menu
               v-model:collapsed="collapsed"
@@ -68,6 +68,12 @@ const menuList : MenuType[] = [
     .clt_menu{
         height: calc(100vh - 90px);
         position: relative;
+
+        &.collapsed{
+            .arco-menu-collapse-button{
+                left: 48px!important;
+            }
+        }
 
         &:hover{
             .arco-menu-collapse-button{
