@@ -4,6 +4,7 @@ import {theme} from "@/components/common/clt_theme";
 import Clt_screen from "@/components/common/clt_screen.vue";
 import Clt_menu from "@/components/admin/clt_menu.vue";
 import {collapsed} from "@/components/admin/clt_menu";
+import Ctl_Breadcrumb from "@/components/admin/ctl_Breadcrumb.vue";
 </script>
 
 <template>
@@ -14,9 +15,7 @@ import {collapsed} from "@/components/admin/clt_menu";
   </div>
   <div class="clt_main">
       <div class="clt_head">
-          <div class="clt_breadcrumbs">
-              <a-button type="primary">{{ theme }}</a-button>
-          </div>
+          <ctl_-breadcrumb></ctl_-breadcrumb>
           <div class="clt_actions">
               <icon-home />
               <clt_theme></clt_theme>
@@ -26,9 +25,7 @@ import {collapsed} from "@/components/admin/clt_menu";
       </div>
       <div class="clt_tabs"></div>
       <div class="clt_container">
-          <router-view >
-
-          </router-view>
+          <router-view ></router-view>
       </div>
   </div>
 </div>

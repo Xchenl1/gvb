@@ -17,32 +17,49 @@ const router = createRouter({
     {
       name:"admin",
       path:"/admin",
-      // @ts-ignore
+      meta:{
+        title:"首页",
+      },
       component:()=>import("@/views/admin/index.vue"),
       children: [
         {
           name:"home",
           path:"",
-          component:()=>import("@/views/admin/home/index.vue")
+          component:()=>import("@/views/admin/home/index.vue"),
+          meta:{
+            title:"个人中心",
+          }
         },
         {
           name:"userCenter",
           path:"user_center",
+          meta:{
+            title:"个人中心",
+          },
           children:[
             {
               name:"userInfo",
               path:"user_info",
-              component:()=>import("@/views/admin/user_center/index.vue")
+              meta:{
+                title:"用户信息",
+              },
+              component:()=>import("@/views/admin/user_center/index.vue"),
             }
           ]
         },
         {
           name:"userManage",
           path:"user_manage",
+          meta:{
+            title:"用户管理",
+          },
           children:[
             {
               name:"userList",
               path:"user_list",
+              meta:{
+                title:"用户列表",
+              },
               component:()=>import("@/views/admin/user_center/index.vue")
             }
           ]
@@ -50,11 +67,17 @@ const router = createRouter({
         {
           name:"settingManage",
           path:"settings_manage",
+          meta:{
+            title:"系统配置",
+          },
           children:[
             {
               name:"settings",
               path:"settings",
-              component:()=>import("@/views/admin/user_center/index.vue")
+              meta:{
+                title:"系统信息",
+              },
+              component:()=>import("@/views/admin/user_center/index.vue"),
             }
           ]
         },
