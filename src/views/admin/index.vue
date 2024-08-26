@@ -1,15 +1,16 @@
 <script setup lang="ts">
-
 import Clt_theme from "@/components/common/clt_theme.vue";
 import {theme} from "@/components/common/clt_theme";
 import Clt_screen from "@/components/common/clt_screen.vue";
+import Clt_menu from "@/components/admin/clt_menu.vue";
+import {collapsed} from "@/components/admin/clt_menu";
 </script>
 
 <template>
 <div class="clt_admin">
-  <div class="clt_aside">
+  <div class="clt_aside" :class="{collapsed:collapsed}">
       <div class="clt_logo"></div>
-      <div class="clt_menu"></div>
+    <clt_menu></clt_menu>
   </div>
   <div class="clt_main">
       <div class="clt_head">
@@ -38,19 +39,21 @@ import Clt_screen from "@/components/common/clt_screen.vue";
 
 .clt_admin {
     display: flex;
-    background-color: @color-fill-1;
+    background-color: var(--color-bg-1);
     color: @color-text-1;
 
     .clt_aside {
         width: 240px;
         height: 100vb;
-        overflow-y: auto;
-        overflow-x: hidden;
         border-right: @clt_border;
 
         .clt_logo {
             width: 100%;
             height: 90px;
+        }
+
+        &.collapsed{
+          width: 48px;
         }
     }
 
@@ -77,6 +80,7 @@ import Clt_screen from "@/components/common/clt_screen.vue";
         height: calc(100vh - 90px);
         overflow-y: auto;
         overflow-x: hidden;
+        background-color: @color-fill-2 ;
     }
 }
 }
