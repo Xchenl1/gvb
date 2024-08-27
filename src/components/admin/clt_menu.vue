@@ -57,7 +57,7 @@ interface MenuType{
 const menuList : MenuType[] = [
     {title:"首页",name:"admin",icon:IconHome},
     {title:"个人中心",name:"userCenter",icon:IconUser,children:[
-            {title:"用户信息",name:"userInfo",icon:"icon-yonghuxinxi"}
+            {title:"个人信息",name:"userInfo",icon:"icon-yonghuxinxi"}
         ]},
     {title:"用户管理",name:"userManage",icon:"icon-yonghuguanli",children:[
             {title:"用户列表",name:"userList",icon:"icon-yonghuliebiao"}

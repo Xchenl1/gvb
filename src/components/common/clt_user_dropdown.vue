@@ -7,23 +7,34 @@
             <icon-down/>
         </div>
         <template #content>
-            <a-doption>Option 1</a-doption>
-            <a-doption disabled>Option 2</a-doption>
-            <a-doption>Option 3</a-doption>
-            <a-doption>Option 4</a-doption>
-            <a-doption>Option 5</a-doption>
-            <a-doption>Option 6</a-doption>
-            <a-doption>Option 7</a-doption>
-            <a-doption>Option 8</a-doption>
-            <a-doption>Option 9</a-doption>
+            <a-doption v-for="item in options" :value="item.name">{{ item.title }}</a-doption>
         </template>
     </a-dropdown>
 </template>
 
 <script setup lang="ts">
-function handleSelect(val:string){
+import router from "@/router";
 
+function handleSelect(val:string){
+    if (val==="logout"){
+        return
+    }
+    router.push({name:val})
 }
+
+interface OptionType{
+    name:string
+    title:string
+}
+
+const options: OptionType[] = [
+    {title:"个人信息",name:"userInfo"},
+    {title:"用户列表",name:"userList"},
+    {title:"系统配置",name:"settings"},
+    {title:"注销退出",name:"logout"},
+]
+
+
 </script>
 
 <style lang="less">
