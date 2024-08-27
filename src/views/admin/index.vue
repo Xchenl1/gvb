@@ -5,6 +5,12 @@ import Clt_screen from "@/components/common/clt_screen.vue";
 import Clt_menu from "@/components/admin/clt_menu.vue";
 import {collapsed} from "@/components/admin/clt_menu";
 import Ctl_Breadcrumb from "@/components/admin/ctl_Breadcrumb.vue";
+import Clt_user_dropdown from "@/components/common/clt_user_dropdown.vue";
+import router from "@/router";
+
+function goHome(){
+    router.push({name:"web"})
+}
 </script>
 
 <template>
@@ -17,9 +23,10 @@ import Ctl_Breadcrumb from "@/components/admin/ctl_Breadcrumb.vue";
       <div class="clt_head">
           <ctl_-breadcrumb></ctl_-breadcrumb>
           <div class="clt_actions">
-              <icon-home />
+              <span title="去首页" @click=goHome><icon-home/></span>
               <clt_theme></clt_theme>
               <clt_screen></clt_screen>
+              <clt_user_dropdown></clt_user_dropdown>
               <div class="clt_info_action"></div>
           </div>
       </div>
@@ -70,6 +77,17 @@ import Ctl_Breadcrumb from "@/components/admin/ctl_Breadcrumb.vue";
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+          .clt_actions{
+            display: flex;
+            align-items: center;
+
+            svg{
+              font-size: 10px;
+              cursor: pointer;
+              margin-right: 10px;
+            }
+          }
         }
 
         .clt_tabs {

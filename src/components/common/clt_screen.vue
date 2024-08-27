@@ -17,8 +17,8 @@ function exitScreen(){
 </script>
 
 <template>
-    <icon-fullscreen v-if="!isFullScreen" @click="fullScreen()"/>
-    <icon-fullscreen-exit title="退出全屏" v-else @click="exitScreen()"/>
+    <span title="全屏" v-if="!isFullScreen" ><icon-fullscreen @click="fullScreen()"/></span>
+    <span title="退出全屏" v-else ><icon-fullscreen-exit @click="exitScreen()"/></span>
 </template>
 
 <style scoped>
