@@ -1,13 +1,17 @@
 <template>
   <div class="clt_tabs">
-      <div class="swiper">
-          <div class="item" @click="check(item)" @mousedown.middle.stop="removeItem(item)" :class="{active:route.name === item.name}" v-for="item in tabs">
-              {{ item.title }}
-              <span class="close" @click.stop="removeItem(item)" title="删除" v-if="item.name !== 'home'">
+
+      <swiper class="clt_tabs_swiper" slides-per-view="slideCount">
+          <swiper-slide v-for="item in tabs">
+              <div class="item" @click="check(item)" @mousedown.middle.stop="removeItem(item)" :class="{active:route.name === item.name}" >
+                  {{ item.title }}
+                  <span class="close" @click.stop="removeItem(item)" title="删除" v-if="item.name !== 'home'">
               <IconClose></IconClose>
           </span>
-          </div>
-      </div>
+              </div>
+          </swiper-slide>
+      </swiper>
+
       <div class="item" @click="removeAllItem">
         删除全部
       </div>
@@ -18,7 +22,8 @@
 import {IconClose} from "@arco-design/web-vue/es/icon"
 import {useRoute} from "vue-router";
 import router from "@/router";
-import {ref, watch} from "vue";
+import {onMounted, ref, watch} from "vue";
+import {Swiper,SwiperSlide} from "swiper/vue";
 
 const route=useRoute()
 
@@ -87,7 +92,7 @@ function loadTabs(){
     }
 }
 
-loadTabs()
+// loadTabs()
 watch(()=>route.name,()=>{
     //判断当前路由名称在不在tabs里如果不在加入进去
     const index=tabs.value.findIndex((value)=>route.name === value.name)
@@ -98,6 +103,37 @@ watch(()=>route.name,()=>{
         })
     }
 },{immediate:true})
+
+const slideCount = ref(100)
+onMounted(()=>{
+    // 显示总宽度
+    const swiperDom =document.querySelector(".clt_tabs_swiper")
+    const swiperwidth = swiperDom.clientWidth
+    // 实际总宽度
+    const wrapperDom = document.querySelector(".clt_tabs_swiper") as HTMLDivElement
+    const wrapperwidth = wrapperDom.scrollWidth
+
+    if (swiperwidth>wrapperwidth){
+        return
+    }
+    // 如果实际总宽度大于显示总宽度
+    // 遍历swiper-slide,从前往后加
+
+    const slideList=document.querySelectorAll(".clt_tabs_swiper .swiper-slide")
+    let allwidth = 0
+    let index = 1
+
+
+    for (const slideListElement of slideList) {
+        allwidth += slideListElement.clientWidth
+        index++
+        if (allwidth >= swiperwidth){
+            break
+        }
+    }
+
+    slideCount.value = index
+})
 </script>
 
 <style lang="less">
@@ -111,7 +147,17 @@ watch(()=>route.name,()=>{
     width: calc(100% - 100px);
     display: flex;
     overflow-y: hidden;
-    overflow-x: auto;
+    overflow-x: hidden;
+
+    .swiper-wrapper{
+      display: flex;
+      align-items: center;
+
+      .swiper-slide{
+        width: fit-content !important;
+        flex-shrink: 0;
+      }
+    }
   }
 
   .item{
