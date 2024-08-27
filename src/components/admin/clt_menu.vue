@@ -23,7 +23,7 @@
 
                       <a-menu-item :key="sub.name" v-for="sub in menu.children">
                           <template #icon>
-                              <component :is="menu.icon"></component>
+                              <component :is="sub.icon"></component>
                           </template>
                           {{ sub.title }}
                       </a-menu-item>
@@ -47,9 +47,9 @@ import {ref} from "vue";
 const route = useRoute()
 
 interface MenuType{
-    title:string
-    name:string
-    icon?:string|Component
+    title: string
+    name: string
+    icon?: string | Component
     children?: MenuType[]
 }
 
@@ -57,13 +57,13 @@ interface MenuType{
 const menuList : MenuType[] = [
     {title:"首页",name:"admin",icon:IconHome},
     {title:"个人中心",name:"userCenter",icon:IconUser,children:[
-            {title:"用户信息",name:"userInfo",}
+            {title:"用户信息",name:"userInfo",icon:"icon-yonghuxinxi"}
         ]},
-    {title:"用户管理",name:"userManage",icon:IconUser,children:[
-            {title:"用户列表",name:"userList",}
+    {title:"用户管理",name:"userManage",icon:"icon-yonghuguanli",children:[
+            {title:"用户列表",name:"userList",icon:"icon-yonghuliebiao"}
         ]},
     {title:"系统设置",name:"settingsManage",icon:IconSettings,children:[
-            {title:"系统信息",name:"settings",}
+            {title:"系统信息",name:"settings",icon:"icon-xitongxinxi"}
         ]},
 ]
 

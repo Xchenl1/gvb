@@ -9,7 +9,7 @@ import '@arco-design/web-vue/dist/arco.css'
 import '@/assets/public.less'
 // @ts-ignore
 import ArcoVueIcon from '@arco-design/web-vue/es/icon';
-
+import '@/assets/iconfont.css'
 const app = createApp(App)
 
 app.use(createPinia())
