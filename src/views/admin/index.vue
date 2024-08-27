@@ -7,6 +7,7 @@ import {collapsed} from "@/components/admin/clt_menu";
 import Ctl_Breadcrumb from "@/components/admin/ctl_Breadcrumb.vue";
 import Clt_user_dropdown from "@/components/common/clt_user_dropdown.vue";
 import router from "@/router";
+import Clt_tabs from "@/components/admin/clt_tabs.vue";
 
 function goHome(){
     router.push({name:"web"})
@@ -30,7 +31,7 @@ function goHome(){
               <div class="clt_info_action"></div>
           </div>
       </div>
-      <div class="clt_tabs"></div>
+      <clt_tabs></clt_tabs>
       <div class="clt_container">
           <router-view ></router-view>
       </div>
