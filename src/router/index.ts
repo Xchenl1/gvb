@@ -65,7 +65,7 @@ const router = createRouter({
           ]
         },
         {
-          name:"settingManage",
+          name:"settingsManage",
           path:"settings_manage",
           meta:{
             title:"系统配置",

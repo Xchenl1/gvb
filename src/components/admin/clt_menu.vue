@@ -5,7 +5,7 @@
               @menu-item-click="menuItemClick"
               v-model:collapsed="collapsed"
               v-model:open-keys="openKeys"
-              :default-selected-keys="[route.name]"
+              v-model:selected-keys="selectedKeys"
               show-collapse-button>
               <template v-for="menu in menuList">
                   <a-menu-item :key="menu.name" v-if="!menu.children">
@@ -43,6 +43,7 @@ import {collapsed} from "@/components/admin/clt_menu";
 import router from "@/router";
 import {useRoute} from "vue-router";
 import {ref} from "vue";
+import {watch} from "vue";
 
 const route = useRoute()
 
@@ -74,14 +75,19 @@ function menuItemClick(key:string){
 }
 
 const openKeys =ref<string[]>([])
+const selectedKeys =ref<string[]>([])
 
 function initRoute(){
     if (route.matched.length===3){
         openKeys.value=[route.matched[1].name as string]
     }
+    selectedKeys.value=[route.name as string]
 }
 
-initRoute()
+watch(()=>route.name,()=>{
+    initRoute()
+},{immediate:true})
+
 </script>
 
 <style lang="less">
