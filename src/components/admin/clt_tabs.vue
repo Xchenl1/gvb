@@ -39,6 +39,12 @@ function check(item:TabType){
     router.push({
         name:item.name
     })
+    saveTabs()
+}
+
+
+function saveTabs(){
+    localStorage.setItem("clt_tabs",JSON.stringify(tabs.value))
 }
 
 function removeItem(item:TabType){
@@ -56,6 +62,7 @@ function removeItem(item:TabType){
         }
         tabs.value.splice(index,1)
     }
+    saveTabs()
 }
 
 function removeAllItem(item:TabType){
@@ -65,7 +72,22 @@ function removeAllItem(item:TabType){
     router.push({
         name:"home"
     })
+    saveTabs()
 }
+
+
+function loadTabs(){
+    const clt_tabs=localStorage.getItem("clt_tabs")
+    if (clt_tabs){
+        try {
+           tabs.value=JSON.parse(clt_tabs)
+        }catch(e){
+            console.log(e)
+        }
+    }
+}
+
+loadTabs()
 </script>
 
 <style lang="less">
