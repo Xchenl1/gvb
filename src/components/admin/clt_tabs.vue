@@ -2,8 +2,9 @@
   <div class="clt_tabs">
 
       <swiper class="clt_tabs_swiper" slides-per-view="slideCount">
-          <swiper-slide v-for="item in tabs">
-              <div class="item" @click="check(item)" @mousedown.middle.stop="removeItem(item)" :class="{active:route.name === item.name}" >
+          <swiper-slide v-for="item in tabs" :class="{active:route.name === item.name}" >
+              <div class="item" @click="check(item)" @mousedown.middle.stop="removeItem(item)"
+                   :class="{active:route.name === item.name}" >
                   {{ item.title }}
                   <span class="close" @click.stop="removeItem(item)" title="删除" v-if="item.name !== 'home'">
               <IconClose></IconClose>
@@ -125,7 +126,7 @@ onMounted(()=>{
 
 
     for (const slideListElement of slideList) {
-        allwidth += slideListElement.clientWidth
+        allwidth += (slideListElement.clientWidth+20)
         index++
         if (allwidth >= swiperwidth){
             break
@@ -133,6 +134,18 @@ onMounted(()=>{
     }
 
     slideCount.value = index
+
+    // 选中高亮的元素
+   const activeSlide = document.querySelector(".clt_tabs_swiper .swiper-slide.active") as HTMLDivElement
+  if (activeSlide.offsetLeft > swiperwidth){
+      const offsetLeft = swiperwidth - activeSlide.offsetLeft
+
+      setTimeout(()=>{
+          wrapperDom.style.transform =  'translate3d(${offsetLeft}px, 0px ,0px)'
+          console.log(offsetLeft)
+      },1000)
+  }
+
 })
 </script>
 
