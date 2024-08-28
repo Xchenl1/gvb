@@ -33,8 +33,12 @@ function goHome(){
           </div>
       </div>
       <clt_tabs></clt_tabs>
-      <div class="clt_container">
-          <router-view ></router-view>
+      <div class="clt_container scrollbar">
+          <router-view class="clt_base_view" v-slot="{Component}">
+              <transition name="fade" mode="out-in">
+                  <component is="Component"></component>
+              </transition>
+          </router-view>
       </div>
   </div>
 </div>
@@ -103,9 +107,42 @@ function goHome(){
             height: calc(100vh - 90px);
             overflow-y: auto;
             overflow-x: hidden;
-            background-color: @color-fill-2 ;
+            background-color: @color-fill-2;
+            padding: 20px;
+
+          .clt_base_view{
+            background-color: var(--color-bg-1);
+            border-radius: 5px;
+          }
         }
     }
+}
+
+// 组件刚开始离开
+.fade-leave-active{
+
+}
+
+// 组件离开结束
+.fade-leave-to{
+    transform: translateX(30px);
+    opacity: 0;
+}
+
+// 组件刚开始进入
+.fade-enter-active{
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+// 组件进入完成
+.fade-enter-to{
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.fade-leave-active .fade-enter-active{
+    transition: all .3s ease-out;
 }
 
 </style>
