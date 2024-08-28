@@ -8,6 +8,7 @@ import Ctl_Breadcrumb from "@/components/admin/ctl_Breadcrumb.vue";
 import Clt_user_dropdown from "@/components/common/clt_user_dropdown.vue";
 import router from "@/router";
 import Clt_tabs from "@/components/admin/clt_tabs.vue";
+import Clt_logo from "@/components/admin/clt_logo.vue";
 
 function goHome(){
     router.push({name:"web"})
@@ -17,7 +18,7 @@ function goHome(){
 <template>
 <div class="clt_admin">
   <div class="clt_aside" :class="{collapsed:collapsed}">
-      <div class="clt_logo"></div>
+      <clt_logo></clt_logo>
     <clt_menu></clt_menu>
   </div>
   <div class="clt_main">
